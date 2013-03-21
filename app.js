@@ -22,7 +22,17 @@ module.exports = function(src, dest){
             out = fstream.Writer({ 'path': dest, 'type': 'File' }) ;
 
         inp.pipe(tar.Pack()).pipe(zlib.Gzip()).pipe(out);
-        console.log('Folder compressed.');
+
+        /*
+         * log compression process.
+         */
+        out.on('close', function(){
+            console.log('Folder compressed.');
+        });
+
+        out.on('error', function(){
+            console.log('ERROR! Something goes wrong.');
+        });
 
     } else if(stats.isFile()) {
 
@@ -36,7 +46,7 @@ module.exports = function(src, dest){
         inp.pipe(zlib.Gzip()).pipe(out);
 
         /*
-         * Console.log output
+         * log compression process.
          */
         out.on('open', function(){
             console.log('Opening the destination file.');
