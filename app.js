@@ -34,7 +34,21 @@ module.exports = function(src, dest){
             out = fs.createWriteStream(dest) ;
 
         inp.pipe(zlib.Gzip()).pipe(out);
-        console.log('File compressed.');
+
+        /*
+         * Console.log output
+         */
+        out.on('open', function(){
+            console.log('Opening the destination file.');
+        });
+
+        out.on('close', function(){
+            console.log('File compressed.');
+        });
+
+        out.on('error', function(){
+            console.log('ERROR! Something goes wrong.');
+        });
 
     }
 
