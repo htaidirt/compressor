@@ -1,0 +1,24 @@
+{
+    "name": "compressor",
+    "version": "0.1.1",
+    "author": "Hassen Taidirt <htaidirt@gmail.com>",
+    "desciption": "A file/directory compressor module for node.js",
+    "keys": [
+        "compress",
+        "file",
+        "directory",
+        "zip",
+        "tar"
+    ],
+    "dependencies": {
+        "fstream": "*",
+        "tar": "*"
+    },
+    "devDependencies": {
+        "mocha": "*"
+    },
+    "scripts": {
+        "start": "node app",
+        "test": "mocha test/"
+    }
+}
