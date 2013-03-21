@@ -1,6 +1,4 @@
 var fs = require('fs') ,
-    fstream = require('fstream') ,
-    tar = require('tar') ,
     zlib = require('zlib') ;
 
 module.exports = function(src, dest){
@@ -17,6 +15,14 @@ module.exports = function(src, dest){
          * 1/ convert it to .tar
          * 2/ compress using Gzip
          */
+        var fstream = require('fstream') ,
+            tar = require('tar') ;
+
+        var inp = fstream.Reader({ 'path': src, 'type': 'Directory' }) ,
+            out = fstream.Writer({ 'path': dest, 'type': 'File' }) ;
+
+        inp.pipe(tar.Pack()).pipe(zlib.Gzip()).pipe(out);
+        console.log('Folder compressed.');
 
     } else if(stats.isFile()) {
 
