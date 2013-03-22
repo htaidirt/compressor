@@ -1,3 +1,3 @@
 var compressor = require('../app.js') ;
 
-compressor('files/lorem.txt', 'files/lorem.gz');
+compressor('my_files/lorem.txt');

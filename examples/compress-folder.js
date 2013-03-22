@@ -1,3 +1,3 @@
 var compressor = require('../app.js');
 
-compressor('files/', 'files.tar.gz');
+compressor('my_files/');
